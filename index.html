@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+  <title>nyala</title>
+  <meta name="description" content="Rawat sebuah api kecil. Karakternya tumbuh dari caramu hadir." />
+  <meta name="theme-color" content="#0b0e1a" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="scene" aria-hidden="true"></div>
+
+  <main id="ui">
+    <header class="topbar">
+      <span class="wordmark">nyala</span>
+      <button id="menuBtn" class="ghost-btn" aria-label="Tentang">i</button>
+    </header>
+
+    <section class="readout" id="readout" hidden>
+      <p class="creature-name" id="creatureName">—</p>
+      <p class="state-word" id="stateWord">—</p>
+      <p class="state-line" id="stateLine"></p>
+    </section>
+
+    <nav class="actions" id="actions" hidden>
+      <button class="action" data-act="temani">
+        <span class="act-label">Temani</span>
+        <span class="act-hint" data-hint="temani">duduk sejenak</span>
+      </button>
+      <button class="action" data-act="bagikan">
+        <span class="act-label">Bagikan</span>
+        <span class="act-hint" data-hint="bagikan">titip sepatah kata</span>
+      </button>
+      <button class="action" data-act="sulut">
+        <span class="act-label">Sulut</span>
+        <span class="act-hint" data-hint="sulut">bangkitkan semangat</span>
+      </button>
+    </nav>
+  </main>
+
+  <!-- Momen hadir (Temani) -->
+  <div class="veil" id="presenceVeil" hidden>
+    <div class="breath" id="breathOrb"></div>
+    <p class="veil-text" id="breathText">tarik napas</p>
+    <button class="text-btn" id="breathStop">cukup</button>
+  </div>
+
+  <!-- Lembar berbagi -->
+  <div class="sheet-scrim" id="shareScrim" hidden>
+    <div class="sheet" role="dialog" aria-label="Bagikan sepatah kata">
+      <p class="sheet-title">Apa yang ada di benakmu?</p>
+      <textarea id="shareInput" rows="3" maxlength="280" placeholder="Tulis apa saja. Nyala menyimpannya."></textarea>
+      <div class="sheet-row">
+        <button class="text-btn" id="shareCancel">batal</button>
+        <button class="solid-btn" id="shareSave">titipkan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Saat Nyala membalas (resiprositas) -->
+  <div class="veil soft" id="reciprocityVeil" hidden>
+    <p class="recip-text" id="recipText"></p>
+    <button class="solid-btn" id="recipReply"></button>
+  </div>
+
+  <!-- Onboarding / pertama kali -->
+  <div class="sheet-scrim center" id="introScrim" hidden>
+    <div class="sheet intro" role="dialog" aria-label="Mulai">
+      <p class="intro-eyebrow">sebuah api kecil</p>
+      <p class="intro-body" id="introBody">
+        Ada bara di hadapanmu. Ia tidak butuh dijaga setiap menit. Ia tumbuh dari
+        caramu hadir, bukan dari seberapa sering kamu menekan layar.
+        Beri ia nama.
+      </p>
+      <input id="nameInput" type="text" maxlength="18" placeholder="nama untuk apimu" autocomplete="off" />
+      <button class="solid-btn wide" id="introStart">Nyalakan</button>
+    </div>
+  </div>
+
+  <!-- Menu / tentang -->
+  <div class="sheet-scrim center" id="menuScrim" hidden>
+    <div class="sheet" role="dialog" aria-label="Tentang">
+      <p class="sheet-title">nyala</p>
+      <p class="menu-body" id="menuBody">—</p>
+      <div class="sheet-row between">
+        <button class="text-btn danger" id="resetBtn">mulai dari awal</button>
+        <button class="solid-btn" id="menuClose">tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
